@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Landing Page</title>
+  <link rel="stylesheet" type="text/css" href="/css/indexpage.css">
+</head>
+<body>
+
+<div class="logo"><b><span>m</span><span>y</span><span>S</span><span>p</span><span>ot</span></b></div>
+
+    <p><a th:href="@{/user/signin}" id="btn-twtr1" target="">Sing In</a></p>
+    <p><a th:href="@{/user/signup}" id="btn-twtr2" target="">Create Account</a></p>
+    <p><a th:href="@{/spotify/signin}" id="btn-twtr3" target="">Spotify Log in</a></p>
+    <p><a th:href="@{/spotify/addalbum}" id="btn-twtr4" target="">Spotify Albums</a></p>
+    <p><a th:href="@{/spotify/addtrack}" id="btn-twtr5" target="">Spotify Tracks</a></p>
+    <p><a th:href="@{/user/all}" id="btn-twtr6" target="">Users Panel</a></p>
+
+
+</body>
+</html>

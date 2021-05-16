@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/spotifydb.css">
+    <style>
+        .img{
+            height: 150px;
+            width: 150px;
+        }
+        .link{
+            color: rgba(157, 0, 255, 0.82);
+
+        }
+        .text{
+            color: #f4f4f4;
+            font-size: small;
+        }
+        .play-button{
+            height: 20px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="profile-bar">
+    <form class="search-bar" id="form" role="search" th:action="@{/spotify/addtrack/}" method="post">
+        <input class="search-bar input" id="query" name="q" th:value="${authorName}" aria-label="Search through site content"
+               placeholder="Artist name ...">
+    </form>
+    <a class="btn-twtr1" th:href="@{/}">mySpot Wall</a>
+    <a class="btn-twtr1" th:href="@{/spotify/signin}">Timeline</a>
+    <a class="btn-twtr1" th:href="@{/admin/tracks/all}">my Tracks</a>
+    <a class="btn-twtr1" th:href="@{/admin/albums/all}">my Albums</a>
+</div><br>
+<div class="container group">
+    <div class="grid-1-5" th:each="item : ${spotifyTrackDtos}">
+        <img th:src="${item.imageUrl}" th:class="img" >
+        <ul th:class="text">
+            <li>
+                <audio controls class="play-button">
+                    <source th:src="${item.previewUrl}" >
+                </audio>
+            </li>
+            <li><a th:text="${item.trackName}"></a></li>
+            <li><a th:text="${item.albumName}"></a></li>
+            <li><a th:text="${item.artistName}"></a></li>
+        </ul>
+        <form th:action="@{/spotify/addtrack}" th:object="${track}" method="post">
+            <input type="text" th:value="${item.imageUrl}" th:name="imageUrl" hidden="hidden"/>
+            <input type="text" th:value="${item.previewUrl}" th:name="previewUrl" hidden="hidden"/>
+            <input type="text" th:value="${item.trackName}" th:name="trackName" hidden="hidden"/>
+            <input type="text" th:value="${item.albumName}" th:name="albumName" hidden="hidden"/>
+            <input type="text" th:value="${item.artistName}" th:name="artistName" hidden="hidden"/>
+            <input type="submit" value="add" class="button"/>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    const f = document.getElementById('form');
+    const q = document.getElementById('query');
+    const mySpot = '/spotify/tracks/';
+
+    function submitted(event) {
+        event.preventDefault();
+        const url = mySpot + q.value;
+        const win = window.open(url, "_self");
+        win.focus();
+    }
+    f.addEventListener('submit', submitted);
+</script>
+</html>

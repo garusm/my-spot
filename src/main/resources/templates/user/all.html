@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/albumdb.css">
+    <style>
+        .delete{
+            color: rgba(244, 244, 244, 0.52);
+        }
+    </style>
+</head>
+<style>
+    .text{
+        color: rgba(244, 244, 244, 0.74);
+        font-size: large;
+    }
+    .text2{
+        color: #f4f4f4;
+        font-size: large;
+
+    }
+</style>
+<body>
+<div class="profile-bar">
+    <a class="btn-twtr1" th:href="@{/}">mySpot Wall</a>
+    <a class="btn-twtr1" th:href="@{/spotify/signin}">my Profile</a>
+</div><br>
+<div class="container group">
+    <div class="grid-1-5" th:each="u : ${users}">
+        <a class="delete" th:href="@{/user/delete/{id}(id=${u.id})}">Delete</a>
+        <p></p>
+        <a th:text="${u.userName}" class="text2"/><br>
+        <p></p>
+        <p></p>
+        <ul th:class="text">
+            <li><a th:text="${u.email}"></a></li>
+            <li>Pass: <a th:text="${u.password}"></a></li>
+            <li>Active: <a th:text="${u.enabled}"></a></li>
+            <li>Created: <a th:text="${u.created}"></a></li>
+            <li>Updated: <a th:text="${u.updated}"></a></li>
+            <li>Id: <a th:text="${u.id}"></a></li><br>
+        </ul>
+        <a th:href="@{/user/edit/{id}(id=${u.id})}" class="button">Edit</a>
+    </div>
+</div>
+
+</body>
+</html>

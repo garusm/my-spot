@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  .errors{
+    font-size: small;
+    color: white;
+    background: rgba(201, 28, 31, 0.99);
+  }
+
+</style>
+<body>
+
+<form th:action="@{/favorite/album/add}" th:object="${favoriteAlbum}" method="post">
+  <div>
+    <label>Album name</label>
+    <div class="errors" th:if="${#fields.hasErrors('favoriteAlbumName')}" th:errors="*{favoriteAlbumName}"></div>
+    <input type="text" class="text-input" th:field="*{favoriteAlbumName}" id="favoriteAlbumName" />
+    <input type="submit" value="Add Album">
+  </div>
+
+</form>
+
+</body>
+</html>

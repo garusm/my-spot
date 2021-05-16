@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mySpot Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+</head>
+
+<style>
+    .errors{
+        font-size: small;
+        color: #ff0000;
+    }
+    .text{
+        color: #f4f4f4;
+        font-style: oblique;
+    }
+    .text2{
+        color: #f4f4f4;
+    }
+
+</style>
+<body>
+<div class="logo2"><b><span>m</span><span>y</span><span>S</span><span>p</span><span>o</span><span>t</span></b></div><br>
+
+<div class="container" x-data="{ rightSide: false, leftSide: false }">
+
+    <div class="main">
+
+        <div class="main-container">
+            <div class="profile">
+                <div class="profile-menu">
+                    <a class="profile-menu-link" th:href="@{/}">mySpot Wall</a>
+                    <a class="profile-menu-link active" th:href="@{/spotify/signin}">my Profile</a>
+                    <a class="profile-menu-link" th:href="@{/admin/albums/all}">Albums</a>
+                    <a class="profile-menu-link" th:href="@{/admin/tracks/all}">Tracks</a>
+                    <a class="profile-menu-link" th:href="@{/favorite/track/add}">Favorite Tracks form</a>
+                </div>
+            </div>
+            <!--            <div class="timeline">-->
+            <a class="profile-menu-link" th:href="@{/favorite/track/add}">Add Tracks</a><br><br><br>
+            <table>
+                <thead>
+                <tr class="text">
+                    <th> Track </th>
+                    <th> Album </th>
+                    <th> Artist </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${allFavTracks}" class="text2">
+                    <td><span th:text="${item.favoriteTrackName.toString()}"></span></td>
+                    <td><span th:text="${item.favoriteAlbum.favoriteAlbumName}" th:name="${item.favoriteAlbum}"> </span></td>
+                    <td><span th:text="${item.favoriteArtist.favoriteArtistName}" th:name="${item.favoriteArtist}"> </span></td>
+                </tr>
+                </tbody>
+            </table>
+            <!--          </div>-->
+        </div>
+        <div class="overlay" @click="rightSide = false; leftSide = false" :class="{ 'active': rightSide || leftSide }"></div>
+    </div>
+</div>
+
+</body>
+</html>

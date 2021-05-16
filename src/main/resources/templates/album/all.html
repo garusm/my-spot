@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/albumdb.css">
+</head>
+
+<style>
+    .img{
+        height: 200px;
+        width: 200px;
+    }
+    .link{
+        color: rgba(255, 0, 242, 0.82);
+
+    }
+    .text{
+        color: #f4f4f4;
+        font-size: small;
+    }
+</style>
+
+<body>
+
+<div class="profile-bar">
+    <a class="btn-twtr1" th:href="@{/}">mySpot Wall</a>
+    <a class="btn-twtr1" th:href="@{/spotify/signin}">my Profile</a>
+    <a class="btn-twtr1" th:href="@{/admin/tracks/all}">my Tracks</a>
+    <a class="btn-twtr-active" th:href="@{/admin/albums/all}">my Albums</a>
+</div><br>
+
+    <div class="container group">
+        <div class="grid-1-5" th:each="album : ${albums}">
+            <img th:src="${album.imageUrl}" th:class="img">
+            <ul th:class="text">
+                <li><a th:text="${album.artistName}"></a></li>
+                <li><a th:text="${album.albumName}"></a></li>
+                <li><a th:text="${album.dateOfRelease}"></a></li>
+            </ul>
+            <a th:href="@{/admin/albums/delete/{id}(id=${album.id})}" class="button">Delete</a>
+        </div>
+    </div>
+
+</body>
+</html>

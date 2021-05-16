@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/css/albumdb.css">
+</head>
+
+<style>
+  .img{
+    height: 150px;
+    width: 150px;
+  }
+  .link{
+    color: rgba(255, 0, 153, 0.82);
+
+  }
+  .text{
+    color: #f4f4f4;
+    font-size: small;
+  }
+  .play-button{
+    height: 20px;
+    width: 200px;
+  }
+</style>
+
+<body>
+
+<div class="profile-bar">
+  <a class="btn-twtr1" th:href="@{/}">mySpot Wall</a>
+  <a class="btn-twtr1" th:href="@{/spotify/signin}">my Profile</a>
+  <a class="btn-twtr-active" th:href="@{/admin/tracks/all}">my Tracks</a>
+  <a class="btn-twtr1" th:href="@{/admin/albums/all}">my Albums</a>
+</div><br>
+
+<div class="container group">
+  <div class="grid-1-5" th:each="track : ${tracks}">
+    <img th:src="${track.imageUrl}" th:class="img">
+    <ul th:class="text">
+      <li>
+        <audio controls class="play-button">
+          <source th:src="${track.previewUrl}" >
+        </audio>
+      </li>
+      <li><a th:text="${track.trackName}"></a></li>
+      <li><a th:text="${track.albumName}"></a></li>
+      <li><a th:text="${track.artistName}"></a></li>
+    </ul>
+    <a th:href="@{/admin/tracks/delete/{id}(id=${track.id})}" class="button">Delete</a>
+  </div>
+</div>
+
+</body>
+</html>

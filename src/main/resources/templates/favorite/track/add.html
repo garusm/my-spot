@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+      <html xmlns:th="http://www.thymeleaf.org" lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <title>mySpot Dashboard</title>
+        <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+      </head>
+
+      <style>
+        .errors{
+          font-size: small;
+          color: #ff0000;
+        }
+        .text{
+          color: #f4f4f4;
+          font-style: oblique;
+        }
+
+      </style>
+      <body>
+      <div class="logo2"><b><span>m</span><span>y</span><span>S</span><span>p</span><span>o</span><span>t</span></b></div><br>
+
+      <div class="container" x-data="{ rightSide: false, leftSide: false }">
+
+        <div class="main">
+
+          <div class="main-container">
+            <div class="profile">
+              <div class="profile-menu">
+                <a class="profile-menu-link" th:href="@{/}">mySpot Wall</a>
+                <a class="profile-menu-link active" th:href="@{/spotify/signin}">my Profile</a>
+                <a class="profile-menu-link" th:href="@{/admin/albums/all}">Albums</a>
+                <a class="profile-menu-link" th:href="@{/admin/tracks/all}">Tracks</a>
+                <a class="profile-menu-link" th:href="@{/favorite/track/add}">Favorite Tracks form</a>
+              </div>
+            </div>
+<!--            <div class="timeline">-->
+            <a class="profile-menu-link" th:href="@{/favorite/track/all}">All Tracks</a><br><br><br>
+
+              <form th:action="@{/favorite/track/add}" th:object="${favoriteTrack}" method="post">
+                <div>
+                  <p>
+                    <label class="text">Track name: </label>
+                    <input type="text" class="text-input" th:field="*{favoriteTrackName}" id="favoriteTrackName" />
+                    <div class="errors" th:if="${#fields.hasErrors('favoriteTrackName')}" th:errors="*{favoriteTrackName}"></div>
+                  </p>
+                  <p>
+                    <label class="text">Artist select: </label>
+                    <div class="errors" th:if="${#fields.hasErrors('favoriteArtist')}" th:errors="*{favoriteArtist}"></div>
+                    <select th:field="*{favoriteArtist}" >
+                    <option th:each="item : ${favArtist}" th:value="${item.id}" th:text="${item.favoriteArtistName}" >
+                    </option>
+                  </select>
+                  <label class="text">Album select: </label>
+                  <div class="errors" th:if="${#fields.hasErrors('favoriteAlbum')}" th:errors="*{favoriteAlbum}"></div>
+                  <select th:field="*{favoriteAlbum}" >
+                    <option th:each="item : ${favAlbum}" th:value="${item.id}" th:text="${item.favoriteAlbumName}">
+                    </option>
+                  </select>
+                  </p>
+                  <input type="submit" value="Add Track">
+                </div>
+              </form>
+
+<!--          </div>-->
+        </div>
+          <div class="overlay" @click="rightSide = false; leftSide = false" :class="{ 'active': rightSide || leftSide }"></div>
+        </div>
+        </div>
+
+      </body>
+      </html>
