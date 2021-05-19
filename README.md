@@ -1,5 +1,5 @@
 # my-Spot
-#Web app that allows user to connect with SpotifyAPI.
+# Web app that allows user to connect with SpotifyAPI.
 
 This project is based on:
 * Java
