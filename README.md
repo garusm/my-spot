@@ -1,5 +1,5 @@
 # my-Spot
-#Web app that allows user to connect with SpotifyAPI.
+# Web app that allows user to connect with Spotify API and search for albums and tracks by artist name.
 
 This project is based on:
 * Java
