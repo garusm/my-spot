@@ -38,7 +38,7 @@ public class User implements UserDetails{
     @Column(name = "updated_on")
     private LocalDateTime updated;
 
-    @ManyToMany //(fetch = FetchType.EAGER)
+    @ManyToMany
     private List<Authority> authorities = new ArrayList<>();
 
     @PrePersist
