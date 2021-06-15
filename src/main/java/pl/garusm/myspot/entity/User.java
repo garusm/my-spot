@@ -5,12 +5,10 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User{
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,9 +34,6 @@ public class User{
     @Column(name = "updated_on")
     private LocalDateTime updated;
 
-    @ManyToMany
-    private List<Authority> authorities = new ArrayList<>();
-
     @PrePersist
     public void prePersist() {
         created = LocalDateTime.now();
@@ -49,7 +44,8 @@ public class User{
         updated = LocalDateTime.now();
     }
 
-    public User() { }
+    public User() {
+    }
 
     public Long getId() {
         return id;
@@ -105,13 +101,5 @@ public class User{
 
     public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
-    }
-
-    public List<Authority> getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
     }
 }
