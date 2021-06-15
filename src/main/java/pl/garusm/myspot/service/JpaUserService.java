@@ -1,6 +1,5 @@
 package pl.garusm.myspot.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import pl.garusm.myspot.entity.User;
@@ -44,13 +43,4 @@ public class JpaUserService implements UserService {
         userRepository.save(user);
     }
 
-    @Override
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-
-    @Override
-    public Optional<User> findByUserName(String userName) {
-        return userRepository.findByUserName(userName);
-    }
 }
